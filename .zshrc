@@ -11,7 +11,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="agnoster"
 
 # hide user@hostname, agnoster specific?
-DEFAULT_USER="justin"
+DEFAULT_USER="$USER"
 prompt_context(){}
 
 # Set list of themes to pick from when loading at random
@@ -75,6 +75,7 @@ python \
 pyenv \
 sudo \
 zsh-syntax-highlighting \
+vagrant \
 )
 
 source $ZSH/oh-my-zsh.sh
