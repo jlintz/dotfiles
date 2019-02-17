@@ -110,3 +110,4 @@ source $ZSH/oh-my-zsh.sh
 
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="$HOME/.local/bin:$PATH"
+source $HOME/.aliases
