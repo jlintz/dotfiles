@@ -1,0 +1,5 @@
+
+transcode_ac3() {
+    filename=$(basename -s .mkv $1)
+    ffmpeg -i $1 -c:v copy -c:a ac3 -q:a 448 $filename-ac3.mkv
+}
