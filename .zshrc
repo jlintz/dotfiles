@@ -76,6 +76,8 @@ pyenv \
 sudo \
 zsh-syntax-highlighting \
 vagrant \
+docker \
+docker-compose \
 )
 
 source $ZSH/oh-my-zsh.sh
