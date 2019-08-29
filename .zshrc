@@ -1,8 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -67,19 +65,10 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git \
-aws \
-pip \
-brew \
-github \
-python \
-pyenv \
-sudo \
-zsh-syntax-highlighting \
-vagrant \
-docker \
-docker-compose \
-)
+plugins=(git aws pip brew github python pyenv sudo zsh-syntax-highlighting vagrant docker docker-compose )
+# Path to your oh-my-zsh installation.
+
+export ZSH="${HOME}/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,3 +109,8 @@ fpath+=~/.zfunc
 if [ ! -d $HOME/.vim/.backup ]; then
     mkdir -p $HOME/.vim/.backup
 fi
+
+source /usr/local/bin/aws_zsh_completer.sh
+
+# Needed for Poetry support
+export PATH="$HOME/.poetry/bin:$PATH"
