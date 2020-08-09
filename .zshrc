@@ -65,10 +65,22 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws pip brew github python pyenv sudo zsh-syntax-highlighting vagrant docker docker-compose )
-# Path to your oh-my-zsh installation.
 
 export ZSH="${HOME}/.oh-my-zsh"
+plugins=(git
+aws
+pip
+brew
+github
+python
+pyenv
+sudo
+zsh-syntax-highlighting
+vagrant
+docker
+docker-compose
+poetry
+)
 
 source $ZSH/oh-my-zsh.sh
 
