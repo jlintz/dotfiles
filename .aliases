@@ -3,3 +3,8 @@ transcode_ac3() {
     filename=$(basename -s .mkv $1)
     ffmpeg -i $1 -c:v copy -c:a ac3 -q:a 448 $filename-ac3.mkv
 }
+
+if [[ -f /usr/bin/xsel ]]; then
+    alias pbcopy='xsel --clipboard --input'
+    alias pbpaste='xsel --clipboard --output'
+fi
