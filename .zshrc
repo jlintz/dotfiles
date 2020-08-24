@@ -112,6 +112,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+
+# needed for pipx autocomplete
+autoload -U bashcompinit
+bashcompinit
+
+eval "$(register-python-argcomplete pipx)"
 
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="$HOME/.local/bin:$PATH:$HOME/.poetry/bin"
