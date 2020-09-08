@@ -72,6 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+#
 
 export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
@@ -136,8 +137,14 @@ bashcompinit
 
 eval "$(register-python-argcomplete pipx)"
 
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="$HOME/.local/bin:$PATH:$HOME/.poetry/bin"
+
+# setup poetry autocomplete
+if [ ! -d ${HOME}/.oh-my-zsh/plugins/poetry ]; then
+    mkdir ${HOME}/.oh-my-zsh/plugins/poetry
+    poetry completions zsh > ${HOME}/.oh-my-zsh/plugins/poetry/_poetry
+fi
+
 source $HOME/.aliases
 fpath+=~/.zfunc
 
