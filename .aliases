@@ -8,3 +8,7 @@ if [[ -f /usr/bin/xsel ]]; then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
 fi
+
+# work
+alias gh_jlintz='ssh-add -D; ssh-add ~/Dropbox/keys/github'
+alias gh_tsiq='ssh-add -D; ssh-add ~/keys/id_github_tsiq'
