@@ -152,7 +152,7 @@ if [ ! -d $HOME/.vim/.backup ]; then
     mkdir -p $HOME/.vim/.backup
 fi
 
-source /usr/local/bin/aws_zsh_completer.sh
+source aws_zsh_completer.sh
 
 # Needed for Poetry support
 export PATH="$HOME/.poetry/bin:$PATH"
