@@ -80,6 +80,7 @@ vagrant
 docker
 docker-compose
 poetry
+vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -114,6 +115,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# enable vi mode
+bindkey -v
+bindkey -M viins '\e.' insert-last-word
+bindkey -M viins '\C-l.' clear-screen
+bindkey -M viins '\C-a.' beginning-of-line
+bindkey -M viins '\C-e.' end-of-line
+bindkey -M viins '\C-w.' backward-kill-word
 
 # needed for pipx autocomplete
 autoload -U bashcompinit
