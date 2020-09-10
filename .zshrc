@@ -157,5 +157,8 @@ source aws_zsh_completer.sh
 # Needed for Poetry support
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# Find go binary
+export PATH="/usr/local/go/bin:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
