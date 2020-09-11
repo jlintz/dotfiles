@@ -12,3 +12,7 @@ fi
 # work
 alias gh_jlintz='ssh-add -D; ssh-add ~/Dropbox/keys/github'
 alias gh_tsiq='ssh-add -D; ssh-add ~/keys/id_github_tsiq'
+
+if [[ `uname` == 'Darwin' ]]; then
+    alias ls='gls --color'
+fi

@@ -9,6 +9,11 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 
+# needed for zsh-dircolors-solarized
+if [[ `uname` == 'Darwin' ]]; then
+    alias dircolors='gdircolors'
+fi
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -89,6 +94,8 @@ docker
 docker-compose
 poetry
 vi-mode
+fzf
+zsh-dircolors-solarized
 )
 
 source $ZSH/oh-my-zsh.sh
