@@ -1,7 +1,8 @@
 [global_config]
   title_use_system_font = False
-  title_font = MesloLGS NF 9
+  title_font = MesloLGS NF 12
 [keybindings]
+  toggle_zoom = <Shift><Alt>Return
   next_tab = <Super>bracketright
   prev_tab = <Super>bracketleft
 [profiles]
