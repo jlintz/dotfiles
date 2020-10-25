@@ -142,9 +142,9 @@ bindkey -M viins '\C-w.' backward-kill-word
 autoload -U bashcompinit
 bashcompinit
 
-eval "$(register-python-argcomplete pipx)"
-
 export PATH="$HOME/.local/bin:$PATH:$HOME/.poetry/bin"
+
+eval "$(register-python-argcomplete pipx)"
 
 # setup poetry autocomplete
 if [ ! -d ${HOME}/.oh-my-zsh/plugins/poetry ]; then
