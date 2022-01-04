@@ -11,3 +11,4 @@ git clone --recursive git://github.com/joel-porquet/zsh-dircolors-solarized ${ZS
 # MacOS
 python3 -m pip install pipx
 pipx install argcomplete
+brew install fzf coreutils
