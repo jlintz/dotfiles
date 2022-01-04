@@ -4,11 +4,13 @@
 
 # ZSH setup
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 git clone --recursive git://github.com/joel-porquet/zsh-dircolors-solarized ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-dircolors-solarized
 
 
 # MacOS
+brew install fzf coreutils pyenv
 python3 -m pip install pipx
 pipx install argcomplete
-brew install fzf coreutils
