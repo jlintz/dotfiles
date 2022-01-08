@@ -167,3 +167,9 @@ export PATH="/usr/local/go/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# macos specific configurations
+if [[ `uname` == 'Darwin' ]]; then
+    export CPATH=/opt/homebrew/include
+    export LIBRARY_PATH=/opt/homebrew/lib
+fi
