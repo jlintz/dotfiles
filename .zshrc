@@ -87,6 +87,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
 aws
 pip
+pipenv
 brew
 github
 python
