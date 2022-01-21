@@ -101,6 +101,7 @@ poetry
 vi-mode
 fzf
 zsh-dircolors-solarized
+zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
