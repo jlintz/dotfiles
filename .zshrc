@@ -9,14 +9,11 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 
-# needed for zsh-dircolors-solarized
-if [[ `uname` == 'Darwin' ]]; then
-    alias dircolors='gdircolors'
-fi
+source $HOME/.aliases
 
-which nvim > /dev/null
-if [[ $? -eq 0 ]]; then
-    alias vim=nvim
+# Handle fzf on MacOS
+if [[ `uname` == "Darwin" ]]; then
+    export FZF_BASE="/opt/homebrew/opt/fzf/"
 fi
 
 # Set name of the theme to load --- if set to "random", it will
@@ -149,32 +146,31 @@ bashcompinit
 
 export PATH="$HOME/.local/bin:$PATH:$HOME/.poetry/bin"
 
-eval "$(register-python-argcomplete pipx)"
-
 # setup poetry autocomplete
 if [ ! -d ${HOME}/.oh-my-zsh/plugins/poetry ]; then
     mkdir ${HOME}/.oh-my-zsh/plugins/poetry
     poetry completions zsh > ${HOME}/.oh-my-zsh/plugins/poetry/_poetry
 fi
 
-source $HOME/.aliases
 fpath+=~/.zfunc
-
-if [ ! -d $HOME/.vim/.backup ]; then
-    mkdir -p $HOME/.vim/.backup
-fi
-
-# Needed for Poetry support
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# Find go binary
-export PATH="/usr/local/go/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # macos specific configurations
 if [[ `uname` == 'Darwin' ]]; then
+    # Homebrew initialize
     export CPATH=/opt/homebrew/include
     export LIBRARY_PATH=/opt/homebrew/lib
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+# Find Go binary
+export PATH="/usr/local/go/bin:$PATH"
+
+eval "$(register-python-argcomplete pipx)"
