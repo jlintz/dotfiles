@@ -1,5 +1,5 @@
 #!/bin/bash
-set +eo
+set +eox
 
 if [[ $(uname) == "Darwin" ]]; then
     READLINK=greadlink
