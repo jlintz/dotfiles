@@ -8,8 +8,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
-source $HOME/.aliases
+source ${HOME}/.aliases
 
 # Handle fzf on MacOS
 if [[ `uname` == "Darwin" ]]; then
