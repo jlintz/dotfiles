@@ -8,7 +8,6 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-source ${HOME}/.aliases
 
 # Handle fzf on MacOS
 if [[ `uname` == "Darwin" ]]; then
@@ -143,3 +142,4 @@ eval "$(pyenv init --path)"
 export PATH="/usr/local/go/bin:$PATH"
 
 eval "$(register-python-argcomplete pipx)"
+source ${HOME}/.aliases
