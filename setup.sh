@@ -19,4 +19,5 @@ ln -sf ${REPO_DIR}/.p10k.zsh ${HOME}/
 ln -sf ${REPO_DIR}/.zshrc ${HOME}/
 ln -sf ${REPO_DIR}/.zfunc ${HOME}/
 ln -sf ${REPO_DIR}/.aliases ${HOME}/
+ln -sf ${REPO_DIR}/ssh_config ${HOME}/.ssh/config
 

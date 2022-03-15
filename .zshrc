@@ -131,6 +131,12 @@ if [[ `uname` == 'Darwin' ]]; then
     export CPATH=/opt/homebrew/include
     export LIBRARY_PATH=/opt/homebrew/lib
     eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # for https://github.com/maxgoedjen/secretive
+    SOCKET=/Users/$USER/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+    if [[ -e $SOCKET ]]; then
+        export SSH_AUTH_SOCK=${SOCKET}
+    fi
 fi
 
 # pyenv
