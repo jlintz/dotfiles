@@ -96,6 +96,7 @@ poetry
 vi-mode
 fzf
 zsh-dircolors-solarized
+tmux
 )
 
 source $ZSH/oh-my-zsh.sh
