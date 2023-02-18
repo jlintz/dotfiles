@@ -77,6 +77,23 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #
+# macos specific configurations
+if [[ `uname` == 'Darwin' ]]; then
+    # Homebrew initialize
+    export CPATH=/opt/homebrew/include
+    export LIBRARY_PATH=/opt/homebrew/lib
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # for https://github.com/maxgoedjen/secretive
+    SOCKET=/Users/$USER/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+    if [[ -e $SOCKET ]]; then
+        export SSH_AUTH_SOCK=${SOCKET}
+    fi
+fi
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
 export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
@@ -126,24 +143,7 @@ fpath+=~/.zfunc
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# macos specific configurations
-if [[ `uname` == 'Darwin' ]]; then
-    # Homebrew initialize
-    export CPATH=/opt/homebrew/include
-    export LIBRARY_PATH=/opt/homebrew/lib
-    eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    # for https://github.com/maxgoedjen/secretive
-    SOCKET=/Users/$USER/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-    if [[ -e $SOCKET ]]; then
-        export SSH_AUTH_SOCK=${SOCKET}
-    fi
-fi
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
 
 # Find Go binary
 export PATH="/usr/local/go/bin:$PATH"
