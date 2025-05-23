@@ -148,5 +148,4 @@ fpath+=~/.zfunc
 # Find Go binary
 export PATH="/usr/local/go/bin:$PATH"
 
-eval "$(register-python-argcomplete pipx)"
 source ${HOME}/.aliases
