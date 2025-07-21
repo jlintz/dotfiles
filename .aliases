@@ -11,7 +11,13 @@ if [[ -f /usr/bin/xsel ]]; then
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
-    alias ls='gls --color'
+    EZA=/opt/homebrew/bin/eza
+    if [[ -f $EZA ]]; then
+        alias ls=$EZA
+        alias lsd='ls -L 2 -R -T --icons=auto'
+    else
+        alias ls='gls --color'
+    fi
     alias dircolors='gdircolors'
 fi
 
