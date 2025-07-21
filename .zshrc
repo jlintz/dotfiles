@@ -1,3 +1,22 @@
+##  Speed up ZSH a bit
+##
+# use omz update
+DISABLE_AUTO_UPDATE="true"
+# disable magic escaping on copy/pasting into terminal
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
+#
+# Smarter completion initialization
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
+
+
+## end speed ups
+#
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -97,23 +116,20 @@ eval "$(pyenv init --path)"
 
 export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
-aws
 pip
 pipenv
 brew
 github
-python
 pyenv
 sudo
 zsh-syntax-highlighting
-vagrant
 docker
-docker-compose
-poetry
 vi-mode
 fzf
 zsh-dircolors-solarized
 tmux
+virtualenv
+uv
 )
 
 source $ZSH/oh-my-zsh.sh
