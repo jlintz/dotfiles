@@ -14,7 +14,6 @@ else
     compinit -C
 fi
 
-
 ## end speed ups
 #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -146,20 +145,12 @@ bindkey -M viins '\C-w.' backward-kill-word
 autoload -U bashcompinit
 bashcompinit
 
-export PATH="$HOME/.local/bin:$PATH:$HOME/.poetry/bin"
-
-# setup poetry autocomplete
-if [ ! -d ${HOME}/.oh-my-zsh/plugins/poetry ]; then
-    mkdir ${HOME}/.oh-my-zsh/plugins/poetry
-    poetry completions zsh > ${HOME}/.oh-my-zsh/plugins/poetry/_poetry
-fi
+export PATH="$HOME/.local/bin:$PATH"
 
 fpath+=~/.zfunc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
 
 # Find Go binary
 export PATH="/usr/local/go/bin:$PATH"
