@@ -14,5 +14,3 @@ git clone https://github.com/marlonrichert/zsh-autocomplete ${ZSH_CUSTOM:-~/.oh-
 
 # MacOS
 brew install fzf coreutils pyenv eza
-python3 -m pip install pipx
-pipx install argcomplete
