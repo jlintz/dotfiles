@@ -68,7 +68,6 @@ github
 pyenv
 sudo
 zsh-syntax-highlighting
-zsh-autocomplete
 docker
 vi-mode
 fzf
