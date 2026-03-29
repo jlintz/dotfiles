@@ -62,7 +62,6 @@ eval "$(pyenv init --path)"
 export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
 pip
-pipenv
 brew
 github
 pyenv
