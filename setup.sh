@@ -20,3 +20,9 @@ ln -sf ${REPO_DIR}/.zshrc ${HOME}/
 ln -sf ${REPO_DIR}/.zfunc ${HOME}/
 ln -sf ${REPO_DIR}/.aliases ${HOME}/
 ln -sf ${REPO_DIR}/.tmux.conf ${HOME}/
+
+TMUX_PLUGIN_DIR="${HOME}/.tmux/plugins/"
+if [ ! -d  "$TMUX_PLUGIN_DIR/tpm" ]; then
+    mkdir -p "$TMUX_PLUGIN_DIR"
+    git clone https://github.com/tmux-plugins/tpm "$TMUX_PLUGIN_DIR/tpm"
+fi
