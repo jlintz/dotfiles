@@ -24,3 +24,8 @@
     rb = "!git pull --rebase"
     rbi = "!git rebase -i origin/master"
     pb = "!git push -u origin $(git branch-name)"
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
