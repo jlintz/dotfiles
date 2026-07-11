@@ -6,13 +6,19 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
 #
-# Smarter completion initialization
+# Smarter completion initialization (full compinit at most once a day)
 autoload -Uz compinit
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+if [[ $(uname) == 'Darwin' ]]; then
+    zcompdump_day=$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+else
+    zcompdump_day=$(date -r ~/.zcompdump +'%j' 2>/dev/null)
+fi
+if [ "$(date +'%j')" != "$zcompdump_day" ]; then
     compinit
 else
     compinit -C
 fi
+unset zcompdump_day
 
 ## end speed ups
 #
@@ -54,10 +60,11 @@ if [[ `uname` == 'Darwin' ]]; then
         export SSH_AUTH_SOCK=${SOCKET}
     fi
 fi
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# pyenv — PATH setup only; the oh-my-zsh pyenv plugin runs `pyenv init`
+if [[ -d "$HOME/.pyenv" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+fi
 
 export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
@@ -78,13 +85,13 @@ uv
 
 source $ZSH/oh-my-zsh.sh
 
-# enable vi mode
-bindkey -v
+# vi mode is enabled by the vi-mode plugin; restore some emacs-style
+# bindings in insert mode
 bindkey -M viins '\e.' insert-last-word
-bindkey -M viins '\C-l.' clear-screen
-bindkey -M viins '\C-a.' beginning-of-line
-bindkey -M viins '\C-e.' end-of-line
-bindkey -M viins '\C-w.' backward-kill-word
+bindkey -M viins '\C-l' clear-screen
+bindkey -M viins '\C-a' beginning-of-line
+bindkey -M viins '\C-e' end-of-line
+bindkey -M viins '\C-w' backward-kill-word
 
 export PATH="$HOME/.local/bin:$PATH"
 

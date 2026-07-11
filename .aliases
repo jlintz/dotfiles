@@ -1,7 +1,8 @@
 
 transcode_ac3() {
-    filename=$(basename -s .mkv $1)
-    ffmpeg -i $1 -c:v copy -c:a ac3 -q:a 448 $filename-ac3.mkv
+    local filename
+    filename=$(basename -s .mkv "$1")
+    ffmpeg -i "$1" -c:v copy -c:a ac3 -b:a 448k "${filename}-ac3.mkv"
 }
 
 # Linux

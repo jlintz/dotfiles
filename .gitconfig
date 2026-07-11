@@ -5,6 +5,16 @@
 	editor = vim
 [color]
 	ui = auto
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	algorithm = histogram
 [github]
 	user = jlintz
 [alias]
@@ -22,7 +32,7 @@
     gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
     la = "!git config -l | grep alias | cut -c 7-"
     rb = "!git pull --rebase"
-    rbi = "!git rebase -i origin/master"
+    rbi = "!git rebase -i $(git rev-parse --abbrev-ref origin/HEAD)"
     pb = "!git push -u origin $(git branch-name)"
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
