@@ -14,7 +14,27 @@ fi
 if [[ `uname` == 'Darwin' ]]; then
     EZA=/opt/homebrew/bin/eza
     if [[ -f $EZA ]]; then
-        alias ls=$EZA
+        # eza's -t takes an argument (--time FIELD), so translate GNU-style
+        # time sorting (-t newest first, -tr oldest first) to --sort=modified
+        unalias ls 2>/dev/null
+        function ls {
+            local args=() a
+            for a in "$@"; do
+                if [[ $a == -[a-zA-Z]* && $a == *t* ]]; then
+                    a=${a//t/}
+                    if [[ $a == *r* ]]; then
+                        a=${a//r/}
+                    else
+                        a+=r
+                    fi
+                    args+=(--sort=modified)
+                    [[ $a != - ]] && args+=($a)
+                else
+                    args+=($a)
+                fi
+            done
+            $EZA "${args[@]}"
+        }
         alias lsd='ls -L 2 -R -T --icons=auto'
     else
         alias ls='gls --color'
