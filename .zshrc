@@ -60,18 +60,12 @@ if [[ `uname` == 'Darwin' ]]; then
         export SSH_AUTH_SOCK=${SOCKET}
     fi
 fi
-# pyenv — PATH setup only; the oh-my-zsh pyenv plugin runs `pyenv init`
-if [[ -d "$HOME/.pyenv" ]]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-fi
 
 export ZSH="${HOME}/.oh-my-zsh"
 plugins=(git
 pip
 brew
 github
-pyenv
 sudo
 zsh-syntax-highlighting
 docker
