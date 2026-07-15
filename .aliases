@@ -5,44 +5,46 @@ transcode_ac3() {
     ffmpeg -i "$1" -c:v copy -c:a ac3 -b:a 448k "${filename}-ac3.mkv"
 }
 
-# Linux
-if [[ -f /usr/bin/xsel ]]; then
+# Linux clipboard: Wayland first, then X11
+if command -v wl-copy > /dev/null; then
+    alias pbcopy='wl-copy'
+    alias pbpaste='wl-paste'
+elif command -v xsel > /dev/null; then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
 fi
 
-if [[ `uname` == 'Darwin' ]]; then
-    EZA=/opt/homebrew/bin/eza
-    if [[ -f $EZA ]]; then
-        # eza's -t takes an argument (--time FIELD), so translate GNU-style
-        # time sorting (-t newest first, -tr oldest first) to --sort=modified
-        unalias ls 2>/dev/null
-        function ls {
-            local args=() a
-            for a in "$@"; do
-                if [[ $a == -[a-zA-Z]* && $a == *t* ]]; then
-                    a=${a//t/}
-                    if [[ $a == *r* ]]; then
-                        a=${a//r/}
-                    else
-                        a+=r
-                    fi
-                    args+=(--sort=modified)
-                    [[ $a != - ]] && args+=($a)
+if command -v eza > /dev/null; then
+    # eza's -t takes an argument (--time FIELD), so translate GNU-style
+    # time sorting (-t newest first, -tr oldest first) to --sort=modified
+    unalias ls 2>/dev/null
+    function ls {
+        local args=() a
+        for a in "$@"; do
+            if [[ $a == -[a-zA-Z]* && $a == *t* ]]; then
+                a=${a//t/}
+                if [[ $a == *r* ]]; then
+                    a=${a//r/}
                 else
-                    args+=($a)
+                    a+=r
                 fi
-            done
-            $EZA "${args[@]}"
-        }
-        alias lsd='ls -L 2 -R -T --icons=auto'
-    else
-        alias ls='gls --color'
-    fi
+                args+=(--sort=modified)
+                [[ $a != - ]] && args+=($a)
+            else
+                args+=($a)
+            fi
+        done
+        command eza "${args[@]}"
+    }
+    alias lsd='ls -L 2 -R -T --icons=auto'
+elif [[ `uname` == 'Darwin' ]]; then
+    alias ls='gls --color'
+fi
+
+if [[ `uname` == 'Darwin' ]]; then
     alias dircolors='gdircolors'
 fi
 
-which nvim > /dev/null
-if [[ $? -eq 0 ]]; then
+if command -v nvim > /dev/null; then
     alias vim=nvim
 fi

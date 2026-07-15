@@ -11,10 +11,18 @@ Install [MesloLGS NF Regular](https://github.com/romkatv/powerlevel10k-media/raw
 ### macOS packages
 
 ```bash
-brew install fzf coreutils pyenv eza cmake
+brew install tmux fzf coreutils eza cmake
 ```
 
 `cmake` is required to build the `tmux-mem-cpu-load` tmux plugin (compiled from source on first plugin install).
+
+### Linux (Debian/Ubuntu) packages
+
+```bash
+sudo apt install zsh tmux fzf eza cmake build-essential wl-clipboard xsel
+```
+
+`wl-clipboard` provides `pbcopy`/`pbpaste` aliases on Wayland, `xsel` on X11. `eza` is in Debian 13+/Ubuntu 24.04+; on older releases plain `ls` is used automatically.
 
 ### ZSH plugins
 
