@@ -84,4 +84,4 @@ if [[ -d /usr/local/go/bin ]]; then
 fi
 
 source ${HOME}/.aliases
-source ${HOME}/.ts_zshrc
+[[ ! -f ~/.ts_zshrc ]] ||source ${HOME}/.ts_zshrc
