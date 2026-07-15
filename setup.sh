@@ -14,8 +14,10 @@ fi
 
 REPO_DIR=$(dirname "$($READLINK -f "${0}")")
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+# Install oh-my-zsh (installer exits non-zero if already installed, so guard it)
+if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+fi
 
 # -n: don't dereference an existing symlink to a directory (prevents creating
 # links *inside* .zfunc when re-running setup)

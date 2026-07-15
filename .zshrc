@@ -1,25 +1,10 @@
 ##  Speed up ZSH a bit
 ##
 # use omz update
-DISABLE_AUTO_UPDATE="true"
+zstyle ':omz:update' mode disabled
 # disable magic escaping on copy/pasting into terminal
 DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
-#
-# Smarter completion initialization (full compinit at most once a day)
-autoload -Uz compinit
-if [[ $(uname) == 'Darwin' ]]; then
-    zcompdump_day=$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-else
-    zcompdump_day=$(date -r ~/.zcompdump +'%j' 2>/dev/null)
-fi
-if [ "$(date +'%j')" != "$zcompdump_day" ]; then
-    compinit
-else
-    compinit -C
-fi
-unset zcompdump_day
-
 ## end speed ups
 #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -55,17 +40,19 @@ if [[ `uname` == 'Darwin' ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # for https://github.com/maxgoedjen/secretive
-    SOCKET=/Users/$USER/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+    SOCKET=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
     if [[ -e $SOCKET ]]; then
         export SSH_AUTH_SOCK=${SOCKET}
     fi
 fi
 
 export ZSH="${HOME}/.oh-my-zsh"
+
+# custom completion functions
+fpath=(~/.zfunc $fpath)
+
 plugins=(git
-pip
 brew
-github
 sudo
 zsh-syntax-highlighting
 docker
@@ -73,7 +60,6 @@ vi-mode
 fzf
 zsh-dircolors-solarized
 tmux
-virtualenv
 uv
 )
 
@@ -93,6 +79,8 @@ export PATH="$HOME/.local/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Find Go binary
-export PATH="/usr/local/go/bin:$PATH"
+if [[ -d /usr/local/go/bin ]]; then
+    export PATH="/usr/local/go/bin:$PATH"
+fi
 
 source ${HOME}/.aliases
