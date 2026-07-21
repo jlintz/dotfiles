@@ -6,12 +6,12 @@ Personal dotfiles for macOS/Linux. Run `setup.sh` to install.
 
 ### Font
 
-Install [MesloLGS NF Regular](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf) and set it as your terminal font.
+Install [Maple Mono NF](https://github.com/subframe7536/maple-font) and set it as your terminal font.
 
 ### macOS packages
 
 ```bash
-brew install tmux fzf coreutils eza cmake
+brew install tmux fzf coreutils eza cmake starship
 ```
 
 `cmake` is required to build the `tmux-mem-cpu-load` tmux plugin (compiled from source on first plugin install).
@@ -19,7 +19,7 @@ brew install tmux fzf coreutils eza cmake
 ### Linux (Debian/Ubuntu) packages
 
 ```bash
-sudo apt install zsh tmux fzf eza cmake build-essential wl-clipboard xsel
+sudo apt install zsh tmux fzf eza cmake build-essential wl-clipboard xsel starship
 ```
 
 `wl-clipboard` provides `pbcopy`/`pbpaste` aliases on Wayland, `xsel` on X11. `eza` is in Debian 13+/Ubuntu 24.04+; on older releases plain `ls` is used automatically.
