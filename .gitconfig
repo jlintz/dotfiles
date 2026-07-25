@@ -28,7 +28,7 @@
     dl = "!git ll -1"
     dlc = diff --cached HEAD^
     f = "!git ls-files | grep -i"
-    grep = grep -Ii
+    gi = grep -Ii
     gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
     la = "!git config -l | grep alias | cut -c 7-"
     rb = "!git pull --rebase"

@@ -1,18 +1,8 @@
 #!/bin/bash
 set -e
 
-if [[ $(uname) == "Darwin" ]]; then
-    READLINK=greadlink
-    OS="mac"
-elif [[ $(uname) == "Linux" ]]; then
-    READLINK=readlink
-    OS="linux"
-else
-    echo "Unsupported OS: $(uname)" >&2
-    exit 1
-fi
-
-REPO_DIR=$(dirname "$($READLINK -f "${0}")")
+# pwd -P resolves symlinks without needing GNU readlink (greadlink on macOS)
+REPO_DIR=$(cd "$(dirname "$0")" && pwd -P)
 
 # Install oh-my-zsh (installer exits non-zero if already installed, so guard it)
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
@@ -21,13 +11,15 @@ fi
 
 # -n: don't dereference an existing symlink to a directory (prevents creating
 # links *inside* .zfunc when re-running setup)
-ln -sfn ${REPO_DIR}/.gitconfig ${HOME}/
-ln -sfn ${REPO_DIR}/.p10k.zsh ${HOME}/
-ln -sfn ${REPO_DIR}/.zshrc ${HOME}/
-ln -sfn ${REPO_DIR}/.zfunc ${HOME}/
-ln -sfn ${REPO_DIR}/.aliases ${HOME}/
-ln -sfn ${REPO_DIR}/.tmux.conf ${HOME}/
-ln -sfn ${REPO_DIR}/starship.toml ${HOME}/.config/
+ln -sfn "${REPO_DIR}/.gitconfig" "${HOME}/"
+ln -sfn "${REPO_DIR}/.p10k.zsh" "${HOME}/"
+ln -sfn "${REPO_DIR}/.zshrc" "${HOME}/"
+ln -sfn "${REPO_DIR}/.zfunc" "${HOME}/"
+ln -sfn "${REPO_DIR}/.aliases" "${HOME}/"
+ln -sfn "${REPO_DIR}/.tmux.conf" "${HOME}/"
+
+mkdir -p "${HOME}/.config"
+ln -sfn "${REPO_DIR}/starship.toml" "${HOME}/.config/"
 
 TMUX_PLUGIN_DIR="${HOME}/.tmux/plugins/"
 if [ ! -d  "$TMUX_PLUGIN_DIR/tpm" ]; then

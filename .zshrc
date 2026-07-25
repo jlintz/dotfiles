@@ -53,13 +53,15 @@ fpath=(~/.zfunc $fpath)
 plugins=(git
 brew
 sudo
-zsh-syntax-highlighting
 docker
 vi-mode
 fzf
 zsh-dircolors-solarized
 tmux
 uv
+# zsh-syntax-highlighting wraps ZLE widgets at source time, so it must stay
+# last - anything loaded after it won't be highlighted.
+zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
