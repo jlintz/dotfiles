@@ -16,6 +16,7 @@ $python\
 [](fg:color_blue bg:color_bg3)\
 [](fg:color_bg3)\
 $fill\
+$cmd_duration\
 [](fg:color_bg1)\
 $time\
 [ ](fg:color_bg1)\
@@ -28,6 +29,7 @@ palette = 'gruvbox_dark'
 [palettes.gruvbox_dark]
 color_fg0 = '#fbf1c7'
 color_bg1 = '#3c3836'
+color_black = '#000000'
 color_bg3 = '#665c54'
 color_blue = '#458588'
 color_aqua = '#689d6a'
@@ -115,6 +117,11 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[cmd_duration]
+disabled = false
+min_time = 5000
+format = '[](fg:color_yellow)[ 󰔟 $duration ](fg:color_black bg:color_yellow)[](fg:color_yellow) '
 
 [time]
 disabled = false

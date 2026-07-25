@@ -27,6 +27,7 @@ ln -sfn ${REPO_DIR}/.zshrc ${HOME}/
 ln -sfn ${REPO_DIR}/.zfunc ${HOME}/
 ln -sfn ${REPO_DIR}/.aliases ${HOME}/
 ln -sfn ${REPO_DIR}/.tmux.conf ${HOME}/
+ln -sfn ${REPO_DIR}/starship.toml ${HOME}/.config/
 
 TMUX_PLUGIN_DIR="${HOME}/.tmux/plugins/"
 if [ ! -d  "$TMUX_PLUGIN_DIR/tpm" ]; then
