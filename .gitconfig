@@ -2,7 +2,8 @@
 	name = Justin
 	email = jlintz@users.noreply.github.com
 [core]
-	editor = vim
+	# No editor set on purpose: git falls through to $VISUAL/$EDITOR, which
+	# .zshrc points at nvim when present and vim otherwise.
 [color]
 	ui = auto
 [init]
@@ -15,6 +16,18 @@
 	prune = true
 [diff]
 	algorithm = histogram
+	colorMoved = default
+[merge]
+	# zdiff3 shows the common ancestor in conflict markers
+	conflictStyle = zdiff3
+[rerere]
+	# remember conflict resolutions and replay them on the next rebase
+	enabled = true
+[commit]
+	# include the diff in the commit message editor
+	verbose = true
+[branch]
+	sort = -committerdate
 [github]
 	user = jlintz
 [alias]

@@ -16,16 +16,17 @@ Prerequisites listed in README.md: oh-my-zsh, MesloLGS NF font, plus `brew insta
 
 ## Architecture
 
-- **`.zshrc`** — Main shell config. Uses oh-my-zsh with powerlevel10k theme, vi-mode, and numerous plugins. Has macOS-specific blocks (Homebrew, Secretive SSH agent). Adds `~/.zfunc` to `fpath` for custom completions.
+- **`.zshrc`** — Main shell config. Uses oh-my-zsh with vi-mode and numerous plugins; the prompt comes from starship (initialized on the last line). Has macOS-specific blocks (Homebrew, Secretive SSH agent). Adds `~/.zfunc` to `fpath` for custom completions.
 - **`.aliases`** — Shell aliases and functions. eza-wrapping `ls` function on any platform where eza is installed (gls fallback on macOS), wl-copy/xsel clipboard aliases on Linux, nvim→vim alias. Contains `transcode_ac3()` ffmpeg helper.
 - **`.gitconfig`** — Git config with custom aliases (`rb` for pull-rebase, `pb` for push-upstream, `ll`/`ls`/`ld` for log formats, `la` to list aliases).
 - **`.tmux.conf`** — tmux config. Leader remapped to `C-a`. Pane splits with `|`/`-`. Vi copy-mode bindings. Seamless vim/tmux pane navigation via `C-h/j/k/l`.
-- **`.p10k.zsh`** — Powerlevel10k prompt configuration (generated, rarely hand-edited).
-- **`setup.sh`** — Symlink installer. Detects macOS vs Linux for `readlink`/`greadlink`.
-- **`iterm.json`** — iTerm2 profile export.
+- **`starship.toml`** — Active prompt config (gruvbox dark), symlinked to `~/.config/starship.toml`.
+- **`.p10k.zsh`** — Powerlevel10k prompt configuration (generated). **Not in use** — kept and symlinked only so the prompt can be switched back; see README.
+- **`setup.sh`** — Symlink installer. Backs up pre-existing real files to `<name>.bak`, then installs tpm and the tmux plugins.
+- **`iterm.json`** — iTerm2 profile export (not consumed by `setup.sh`).
 
 ## Key Patterns
 
 - Platform detection uses `uname` checks (`Darwin` vs `Linux`) throughout `.zshrc` and `.aliases`.
 - All dotfiles are symlinked (not copied), so edits here are live immediately.
-- Shell plugins are managed via oh-my-zsh's plugin system in `.zshrc`'s `plugins=()` array.
+- Shell plugins are managed via oh-my-zsh's plugin system in `.zshrc`'s `plugins=()` array. `zsh-syntax-highlighting` must stay last in that array — it wraps ZLE widgets at source time.

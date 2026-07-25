@@ -7,25 +7,14 @@ DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
 ## end speed ups
 #
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Powerlevel10k is no longer in use - starship provides the prompt (see the
+# bottom of this file). ~/.p10k.zsh is kept, and still symlinked by setup.sh,
+# so switching back only means restoring the ZSH_THEME line below, the source
+# line for ~/.p10k.zsh, and this instant-prompt block:
+#
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Handle fzf on MacOS
-if [[ `uname` == "Darwin" ]]; then
-    export FZF_BASE="/opt/homebrew/opt/fzf/"
-fi
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 
 CASE_SENSITIVE="true"
@@ -37,6 +26,11 @@ if [[ `uname` == 'Darwin' ]]; then
     export CPATH=/opt/homebrew/include
     export LIBRARY_PATH=/opt/homebrew/lib
     eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # fzf lives under the Homebrew prefix, which differs between Apple Silicon
+    # (/opt/homebrew) and Intel (/usr/local); brew shellenv exports the right
+    # one. Must be set before oh-my-zsh sources the fzf plugin.
+    export FZF_BASE="${HOMEBREW_PREFIX}/opt/fzf"
 
     # for https://github.com/maxgoedjen/secretive
     SOCKET=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
@@ -76,8 +70,20 @@ bindkey -M viins '\C-w' backward-kill-word
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Prefer neovim where it exists. Deliberately not set as git's core.editor so
+# that git picks this up via $EDITOR and still falls back to vim elsewhere.
+if (( $+commands[nvim] )); then
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
+export VISUAL=$EDITOR
+
+# oh-my-zsh sets HISTSIZE=50000 but SAVEHIST=10000, so only a fifth of the
+# in-memory history survives the session. Override after sourcing it.
+HISTSIZE=50000
+SAVEHIST=50000
+setopt HIST_IGNORE_ALL_DUPS
 
 # Find Go binary
 if [[ -d /usr/local/go/bin ]]; then
@@ -85,5 +91,5 @@ if [[ -d /usr/local/go/bin ]]; then
 fi
 
 source ${HOME}/.aliases
-[[ ! -f ~/.ts_zshrc ]] ||source ${HOME}/.ts_zshrc
+[[ ! -f ~/.ts_zshrc ]] || source ${HOME}/.ts_zshrc
 eval "$(starship init zsh)"
