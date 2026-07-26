@@ -23,7 +23,8 @@ Prerequisites listed in README.md: oh-my-zsh, MesloLGS NF font, plus `brew insta
 - **`starship.toml`** — Active prompt config (gruvbox dark), symlinked to `~/.config/starship.toml`.
 - **`.p10k.zsh`** — Powerlevel10k prompt configuration (generated). **Not in use** — kept and symlinked only so the prompt can be switched back; see README.
 - **`setup.sh`** — Symlink installer. Backs up pre-existing real files to `<name>.bak`, then installs tpm and the tmux plugins.
-- **`iterm.json`** — iTerm2 profile export (not consumed by `setup.sh`).
+- **`iterm.json`** — iTerm2 profile export, gruvbox dark colors (not consumed by `setup.sh`; imported by hand — shares the "Default" profile GUID so importing overwrites it).
+- **`gruvbox-dark.itermcolors`** — iTerm2 color preset, gruvbox dark medium (`#282828`). Same color values as `iterm.json`; imported via Colors → Color Presets. Keep the two in sync.
 
 ## Key Patterns
 

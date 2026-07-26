@@ -71,6 +71,25 @@ switch back is easy. To go back:
    above it, re-add `[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh`, and drop the
    `starship init` line at the bottom. Run `p10k configure` to regenerate.
 
+## Terminal colors
+
+The terminal uses **gruvbox dark** (medium background, `#282828`) to match the
+starship palette. `gruvbox-dark.itermcolors` is the importable iTerm2 color
+preset; `iterm.json` is a full profile export carrying the same colors.
+
+Neither is installed by `setup.sh` — iTerm2 stores its settings in its own
+preferences, so import by hand:
+
+- **Colors only** (recommended): iTerm2 → Settings → Profiles → Colors → Color
+  Presets → Import…, pick `gruvbox-dark.itermcolors`, then select **gruvbox
+  dark** from the same menu. Applies immediately to open sessions.
+- **Whole profile** (colors, font, keymap): Settings → Profiles → Other
+  Actions… → Import JSON Profiles…, pick `iterm.json`. It shares the GUID of
+  the "Default" profile, so it overwrites that profile rather than adding one.
+
+To re-export after changing settings in the GUI: Other Actions… → Save Profile
+to File, over `iterm.json`.
+
 ## Post-install
 
 `setup.sh` installs the tmux plugins for you. This builds `tmux-mem-cpu-load`
