@@ -1,1 +1,6 @@
 .DS_Store
+
+# Per-machine Claude Code permissions. Ignored globally via ~/.config/git/ignore
+# on this machine, but repeated here so a clone elsewhere can't commit it.
+# Note: .claude/settings.json (shared config) is deliberately NOT ignored.
+.claude/settings.local.json
