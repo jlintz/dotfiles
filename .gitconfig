@@ -42,7 +42,9 @@
     dlc = diff --cached HEAD^
     f = "!git ls-files | grep -i"
     gi = grep -Ii
-    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+    # ! aliases run from the repo root, so $(pwd) is the toplevel. The trailing
+    # '#' swallows the args git appends, since "$1" already uses them.
+    gra = "!git grep --full-name -In \"$1\" | sed \"s|^|$(pwd)/|\" #"
     la = "!git config -l | grep alias | cut -c 7-"
     rb = "!git pull --rebase"
     rbi = "!git rebase -i $(git rev-parse --abbrev-ref origin/HEAD)"

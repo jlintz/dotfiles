@@ -30,10 +30,6 @@ sudo apt install zsh tmux fzf eza cmake build-essential wl-clipboard xsel starsh
 # Syntax highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
   ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# Dircolors solarized
-git clone --recursive https://github.com/joel-porquet/zsh-dircolors-solarized \
-  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-dircolors-solarized
 ```
 
 `zsh-syntax-highlighting` must stay last in the `plugins=()` array in `.zshrc` —

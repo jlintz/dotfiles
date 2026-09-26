@@ -41,10 +41,6 @@ elif [[ `uname` == 'Darwin' ]]; then
     alias ls='gls --color'
 fi
 
-if [[ `uname` == 'Darwin' ]]; then
-    alias dircolors='gdircolors'
-fi
-
 if command -v nvim > /dev/null; then
     alias vim=nvim
 fi

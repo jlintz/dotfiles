@@ -23,8 +23,6 @@ COMPLETION_WAITING_DOTS="true"
 # macos specific configurations
 if [[ `uname` == 'Darwin' ]]; then
     # Homebrew initialize
-    export CPATH=/opt/homebrew/include
-    export LIBRARY_PATH=/opt/homebrew/lib
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # fzf lives under the Homebrew prefix, which differs between Apple Silicon
@@ -50,7 +48,6 @@ sudo
 docker
 vi-mode
 fzf
-zsh-dircolors-solarized
 tmux
 uv
 # zsh-syntax-highlighting wraps ZLE widgets at source time, so it must stay
